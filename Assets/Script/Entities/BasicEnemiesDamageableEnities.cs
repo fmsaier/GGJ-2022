@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class BasicEnemiesDamageableEnities : DamageableEntity
 {
+    public override void Setup()
+    {
+        base.Setup();
+        Damage *= WaveManager.Instance.CurrentScalingFactor;
+        MaxLife *= WaveManager.Instance.CurrentScalingFactor;
+        MoveSpeed *= WaveManager.Instance.CurrentScalingFactor;
+    }
+
     public override void Die()
     {
         base.Die();

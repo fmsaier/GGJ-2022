@@ -9,12 +9,14 @@ public class DamageableEntity : MonoBehaviour
     public float MoveSpeed = 5;
     public float AttackSpeed = 1.0f;
     public float Damage = 1;
+    public bool IsInControl = true;
     public bool IsInvincible = false;
 
     [Header("Ennemies parameter")]
     public bool ScaleWithTime = false;
-    public float ScalingFactor = 0.1f;
     public float Range = 1f;
+
+    public virtual void Setup() { }
 
     public virtual void TakeDamage(float amount)
     {

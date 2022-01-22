@@ -30,8 +30,15 @@ public class WaveManager : MonoBehaviour
 
     public List<WaveData> WaveDataList = new List<WaveData>();
     public List<Transform> Spawners = new List<Transform>();
+    public BonusSpawner BonusSpawner;
     private int _currentWave = 0;
     private List<DamageableEntity> _currentWaveDamageableEntity = new List<DamageableEntity>();
+
+
+    //Scaling beyond last level
+    public float CurrentScalingFactor = 1;
+    public float ScalingFactorIncrease = 1.1f;
+    public WaveData EndgameBaseWaveData;
 
     public void StartWave()
     {
@@ -41,21 +48,32 @@ public class WaveManager : MonoBehaviour
 
     public void StartEndGameWave()
     {
-        Debug.Log("We are in the endgame now");
+        CurrentScalingFactor *= ScalingFactorIncrease;
+        EndgameBaseWaveData.numberOfEnnemies = (int)(EndgameBaseWaveData.numberOfEnnemies * CurrentScalingFactor);
+        EndgameBaseWaveData.TimeBeforeStart = EndgameBaseWaveData.TimeBeforeStart * CurrentScalingFactor;
+        StartCoroutine(CreateWave(EndgameBaseWaveData));
+    }
+
+    public void OnBonusPickUp()
+    {
+        //TODO Unfreeze timer;
+        BonusSpawner.RemoveBonus();
+        GameManager.Instance.FreezeTimer(false);
+        _currentWave += 1;
+        if (_currentWave < WaveDataList.Count)
+        {
+            StartWave();
+        }
+        else
+        {
+            StartEndGameWave();
+        }
     }
 
     public void FinishWave()
     {
-        _currentWave += 1;
-        if (_currentWave < WaveDataList.Count)
-        {
-            Debug.Log("Starting next wave");
-            StartWave();
-        }
-        /*else
-        {
-            StartEndGameWave();
-        }*/
+        BonusSpawner.CreatePermanentBonus();
+        GameManager.Instance.FreezeTimer(true);
     }
 
     public void RemoveEntityFromCurrentWave(DamageableEntity entity)
@@ -79,6 +97,7 @@ public class WaveManager : MonoBehaviour
         for (int i = 0; i < currentWaveData.numberOfEnnemies; i++)
         {
             DamageableEntity entity = Instantiate(currentWaveData.bestiary[Random.Range(0, currentBestiarySize)], Spawners[Random.Range(0, Spawners.Count)].position, Quaternion.identity);
+            entity.Setup();
             _currentWaveDamageableEntity.Add(entity);
             yield return new WaitForSeconds(currentWaveData.WaveTime / (float)currentWaveData.numberOfEnnemies);
         }

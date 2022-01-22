@@ -31,6 +31,20 @@ public class GameManager : MonoBehaviour
     public bool IsGameStarted = false;
     public bool IsGameOver = false;
     public bool IsPlayerInControl = false;
+    public bool TimerFroze = false;
+    private float _elapsedTime = 0;
+
+    void Update()
+    {
+        if (IsGameStarted == true && IsGameOver != true)
+        {   
+            if (TimerFroze == false)
+            {
+                _elapsedTime += Time.deltaTime;
+                GameUIManager.Instance.UpdateTimer(Mathf.Round(_elapsedTime));
+            }
+        }
+    }
 
     public void SetPlayerControl(bool hasControl)
     {
@@ -50,4 +64,8 @@ public class GameManager : MonoBehaviour
         IsGameOver = true;
     }
 
+    public void FreezeTimer(bool isTimerFreeze)
+    {
+        TimerFroze = isTimerFreeze;
+    }
 }

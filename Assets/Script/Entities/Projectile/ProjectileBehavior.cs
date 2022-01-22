@@ -30,7 +30,6 @@ public class ProjectileBehavior : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log("Triggered");
         GameObject triggeredObject = col.gameObject;
         if (triggeredObject != _belongTo)
         {

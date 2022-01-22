@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameUIManager : MonoBehaviour
@@ -27,8 +28,10 @@ public class GameUIManager : MonoBehaviour
     }
     #endregion
 
-    public void Test()
+    public TMP_Text timerText;
+    
+    public void UpdateTimer(float time)
     {
-        Debug.Log("AAAA");
+        timerText.text = time.ToString();
     }
 }

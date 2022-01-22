@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 10.0f;
-    public Rigidbody2D rb;
+    public Animator Animator;
+    public Rigidbody2D Rb;
+    public DamageableEntity entity;
     private Vector2 _movement;
     private Vector2 _mousePosition;
 
@@ -16,15 +17,15 @@ public class PlayerController : MonoBehaviour
         {
             _movement.x = Input.GetAxisRaw("Horizontal");
             _movement.y = Input.GetAxisRaw("Vertical");
-            /*if (_movement.x != 0 || _movement.y != 0)
+            if (_movement.x != 0 || _movement.y != 0)
             {
-                sharkAnimator.SetBool("Moving", true);
+                Animator.SetBool("Walking", true);
             }
             else
             {
-                sharkAnimator.SetBool("Moving", false);
+                Animator.SetBool("Walking", false);
             }
-            Flip();*/
+            Flip();
         }
     }
 
@@ -32,19 +33,19 @@ public class PlayerController : MonoBehaviour
     {
         if (GameManager.Instance.IsGameStarted == true && GameManager.Instance.IsPlayerInControl == true)
         {
-            rb.MovePosition(rb.position + _movement * speed * Time.fixedDeltaTime);
+            Rb.MovePosition(Rb.position + _movement * entity.MoveSpeed * Time.fixedDeltaTime);
         }
     }
 
-    /*public void Flip()
+    public void Flip()
     {
         if (_movement.x > 0)
         {
-            transform.localScale = new Vector3(1, 1, 1);
+            transform.localScale = new Vector3(-1, 1, 1);
         }
         else if (_movement.x < 0)
         {
-            transform.localScale = new Vector3(-1, 1, 1);
+            transform.localScale = new Vector3(1, 1, 1);
         }
-    }*/
+    }
 }

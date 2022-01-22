@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class PlayerDamageableEntity : DamageableEntity
 {
+    public void AddStat(PermanentBuffScriptable permanentBuffScriptable)
+    {
+        Damage += permanentBuffScriptable.AttackModifier;
+        MaxLife += permanentBuffScriptable.LifeModifier;
+        base.Heal(permanentBuffScriptable.LifeModifier);
+        MoveSpeed += permanentBuffScriptable.SpeedModifier;
+    }
+
     public override void Die()
     {
         base.Die();

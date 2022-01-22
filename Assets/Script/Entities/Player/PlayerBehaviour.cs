@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour
 {
+    public Animator Animator;
     public ProjectileBehavior projectile;
     public DamageableEntity entity;
-
+    
     void Update()
     {
         if (GameManager.Instance.IsGameStarted == true && GameManager.Instance.IsPlayerInControl == true)
@@ -23,6 +24,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     void Attack(Vector3 targetPos)
     {
+        Animator.Play("Attack");
         ProjectileBehavior createdProj = Instantiate(projectile, transform.position, Quaternion.identity, null);
         createdProj.Setup(entity.Damage, this.gameObject, targetPos);
     }
