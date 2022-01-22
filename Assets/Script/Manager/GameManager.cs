@@ -32,12 +32,6 @@ public class GameManager : MonoBehaviour
     public bool IsGameOver = false;
     public bool IsPlayerInControl = false;
 
-    void Start()
-    {
-        StartGame();
-        SetPlayerControl(true);
-    }
-
     public void SetPlayerControl(bool hasControl)
     {
         IsPlayerInControl = hasControl;
@@ -46,10 +40,13 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         IsGameStarted = true;
+        SetPlayerControl(true);
+        WaveManager.Instance.StartWave();
     }
 
     public void FinishGame()
     {
+        IsPlayerInControl = false;
         IsGameOver = true;
     }
 

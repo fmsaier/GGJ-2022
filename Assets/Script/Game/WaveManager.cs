@@ -52,10 +52,10 @@ public class WaveManager : MonoBehaviour
             Debug.Log("Starting next wave");
             StartWave();
         }
-        else
+        /*else
         {
             StartEndGameWave();
-        }
+        }*/
     }
 
     public void RemoveEntityFromCurrentWave(DamageableEntity entity)
