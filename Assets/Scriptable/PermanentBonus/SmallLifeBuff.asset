@@ -15,4 +15,5 @@ MonoBehaviour:
   AttackModifier: 0
   LifeModifier: 1
   SpeedModifier: 0
+  KnockBackModifier: 0
   Description: Inscrease your durability

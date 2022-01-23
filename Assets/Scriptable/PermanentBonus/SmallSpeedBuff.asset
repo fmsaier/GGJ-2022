@@ -15,4 +15,5 @@ MonoBehaviour:
   AttackModifier: 0
   LifeModifier: 0
   SpeedModifier: 1
+  KnockBackModifier: 0
   Description: Increase your speed

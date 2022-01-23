@@ -74,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -5
   m_Sprite: {fileID: 2747690628134850419, guid: b670ab75dde984907b8570040daa08c5, type: 3}
   m_Color: {r: 0.2235294, g: 0.7226799, b: 0.9254902, a: 1}
   m_FlipX: 0
@@ -113,9 +113,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.016608}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.41696012
 --- !u!50 &8177436040261598626
 Rigidbody2D:
   serializedVersion: 4

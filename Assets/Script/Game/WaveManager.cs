@@ -50,7 +50,7 @@ public class WaveManager : MonoBehaviour
     {
         CurrentScalingFactor *= ScalingFactorIncrease;
         EndgameBaseWaveData.numberOfEnnemies = (int)(EndgameBaseWaveData.numberOfEnnemies * CurrentScalingFactor);
-        EndgameBaseWaveData.TimeBeforeStart = EndgameBaseWaveData.TimeBeforeStart * CurrentScalingFactor;
+        EndgameBaseWaveData.WaveTime = EndgameBaseWaveData.TimeBeforeStart * CurrentScalingFactor;
         StartCoroutine(CreateWave(EndgameBaseWaveData));
     }
 

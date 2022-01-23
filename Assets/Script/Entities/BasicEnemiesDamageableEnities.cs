@@ -9,13 +9,13 @@ public class BasicEnemiesDamageableEnities : DamageableEntity
         base.Setup();
         Damage *= WaveManager.Instance.CurrentScalingFactor;
         MaxLife *= WaveManager.Instance.CurrentScalingFactor;
+        CurrentLife = MaxLife;
         MoveSpeed *= WaveManager.Instance.CurrentScalingFactor;
     }
 
     public override void Die()
     {
-        base.Die();
         WaveManager.Instance.RemoveEntityFromCurrentWave(this);
-        Destroy(this.gameObject);
+        base.Die();
     }
 }

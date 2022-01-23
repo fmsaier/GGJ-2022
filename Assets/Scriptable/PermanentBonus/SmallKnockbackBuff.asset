@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a793660f21f66d54d9b158f38d8f1fcd, type: 3}
-  m_Name: SmallAttackBuff
+  m_Name: SmallKnockbackBuff
   m_EditorClassIdentifier: 
-  AttackModifier: 1
+  AttackModifier: 0
   LifeModifier: 0
   SpeedModifier: 0
-  KnockBackModifier: 0
-  Description: Increase damage done
+  KnockBackModifier: 2
+  Description: Increase your knockback

@@ -10,6 +10,7 @@ public class PlayerDamageableEntity : DamageableEntity
         MaxLife += permanentBuffScriptable.LifeModifier;
         base.Heal(permanentBuffScriptable.LifeModifier);
         MoveSpeed += permanentBuffScriptable.SpeedModifier;
+        KnockBackPower += permanentBuffScriptable.KnockBackModifier;
     }
 
     public override void Die()

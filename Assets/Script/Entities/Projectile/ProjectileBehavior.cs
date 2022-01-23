@@ -4,28 +4,37 @@ using UnityEngine;
 
 public class ProjectileBehavior : MonoBehaviour
 {
+    public List<Sprite> ProjectileSpriteList = new List<Sprite>();
     public float Speed = 10f;
     public float TimeToLive = 2.0f;
-    private float _damageDone;
+    [Header("Knockback parameter")]
+    public bool ApplyKnockBack = false;
+    public float KnockbackDuration = 0.5f;
+    private DamageableEntity _entity;
     private GameObject _belongTo;
     private Vector3 _direction;
     private bool _isSetup;
+    private List<DamageableEntity> _hitList = new List<DamageableEntity>();
 
     void Update()
     {
         if (_isSetup == true)
         {
-             transform.position += _direction.normalized * Speed * Time.deltaTime;
+            transform.position += _direction.normalized * Speed * Time.deltaTime;
         }
     }
 
-    public void Setup(float damageDone, GameObject belongTo, Vector3 direction)
+    public void Setup(DamageableEntity entity, GameObject belongTo, Vector3 direction)
     {
-        _damageDone = damageDone;
+        _entity = entity;
         _belongTo = belongTo;
         _direction = direction;
         _isSetup = true;
-        Destroy(this.gameObject, 2.0f);
+        if (ProjectileSpriteList != null && ProjectileSpriteList.Count > 0)
+        {
+            GetComponent<SpriteRenderer>().sprite = ProjectileSpriteList[Random.Range(0, ProjectileSpriteList.Count)];
+        }
+        Destroy(this.gameObject, TimeToLive);
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -34,10 +43,20 @@ public class ProjectileBehavior : MonoBehaviour
         if (triggeredObject != _belongTo)
         {
             DamageableEntity damageableEntity = triggeredObject.GetComponent<DamageableEntity>();
-            if (damageableEntity != null)
+            if (damageableEntity != null && !_hitList.Contains(damageableEntity))
             {
-                damageableEntity.TakeDamage(_damageDone);
+                _hitList.Add(damageableEntity);
+                damageableEntity.TakeDamage(_entity.Damage);
+                if (ApplyKnockBack == true)
+                {
+                    damageableEntity.ApplyKnockBack(KnockbackDuration,  _entity.KnockBackPower, (col.transform.position - transform.position).normalized);
+                }
             }
         }
+    }
+
+    void OnDestroy()
+    {
+        _hitList.Clear();
     }
 }

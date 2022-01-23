@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
                 Animator.SetBool("Walking", false);
             }
             Flip();
+            Rb.velocity = Vector3.zero;
         }
     }
 

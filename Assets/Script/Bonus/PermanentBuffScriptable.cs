@@ -8,6 +8,7 @@ public class PermanentBuffScriptable : ScriptableObject
     public float AttackModifier = 1;
     public float LifeModifier = 1;
     public float SpeedModifier = 1;
+    public float KnockBackModifier = 2f;
 
     public string Description = "This is a buff";
 }

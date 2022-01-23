@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8177436040261598625}
   - component: {fileID: 8177436040261598626}
   m_Layer: 0
-  m_Name: '[Prefab]AttackBuff'
+  m_Name: '[Prefab]KnockBackBuff'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -5
   m_Sprite: {fileID: 2747690628134850419, guid: b670ab75dde984907b8570040daa08c5, type: 3}
-  m_Color: {r: 0.9245283, g: 0.5594026, b: 0.22241008, a: 1}
+  m_Color: {r: 0.9254902, g: 0.22976544, b: 0.2235294, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WaitTimeBeforePecikUp: 1.5
-  permanentBuffScriptable: {fileID: 11400000, guid: a12297bdbc8b1ef43b80e258a1cecf01, type: 2}
+  permanentBuffScriptable: {fileID: 11400000, guid: c41aa7d169fd31f4caa47588fa44044c, type: 2}
 --- !u!58 &8177436040261598625
 CircleCollider2D:
   m_ObjectHideFlags: 0

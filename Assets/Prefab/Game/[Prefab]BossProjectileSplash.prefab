@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 446295393563298632}
   - component: {fileID: 446295393563298639}
   - component: {fileID: -7778468584815949715}
-  - component: {fileID: -1272736453181699586}
   - component: {fileID: 7268496495552809430}
+  - component: {fileID: 6301932787756199143}
   m_Layer: 0
-  m_Name: Projectile
+  m_Name: '[Prefab]BossProjectileSplash'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,8 +75,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.11549306, g: 1, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 091b2aa22e7165642b9db1bb8dced9df, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -98,24 +98,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c309609879bfa043b7c468dd73e9e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 20
+  ProjectileSpriteList:
+  - {fileID: 21300000, guid: 091b2aa22e7165642b9db1bb8dced9df, type: 3}
+  Speed: 10
   TimeToLive: 2
---- !u!58 &-1272736453181699586
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 446295393563298638}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
+  ApplyKnockBack: 0
+  KnockbackDuration: 0
 --- !u!50 &7268496495552809430
 Rigidbody2D:
   serializedVersion: 4
@@ -137,3 +125,90 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!60 &6301932787756199143
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 446295393563298638}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.15, y: 3.67}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.42499998, y: -1.605}
+      - {x: -0.515, y: -1.635}
+      - {x: -0.525, y: -1.675}
+      - {x: -0.525, y: -1.775}
+      - {x: -0.49499997, y: -1.8149999}
+      - {x: -0.355, y: -1.8149999}
+      - {x: -0.325, y: -1.7249999}
+      - {x: -0.325, y: -1.615}
+      - {x: -0.33499998, y: -1.605}
+    - - {x: 0.305, y: -0.935}
+      - {x: 0.49499997, y: -0.775}
+      - {x: 0.555, y: -0.645}
+      - {x: 0.545, y: -0.505}
+      - {x: 0.445, y: -0.33499998}
+      - {x: 0.385, y: -0.13499999}
+      - {x: 0.375, y: 0.145}
+      - {x: 0.39499998, y: 0.265}
+      - {x: 0.575, y: 0.545}
+      - {x: 0.575, y: 0.685}
+      - {x: 0.45499998, y: 0.775}
+      - {x: 0.305, y: 0.805}
+      - {x: 0.255, y: 0.85499996}
+      - {x: 0.255, y: 0.97499996}
+      - {x: 0.205, y: 1.045}
+      - {x: 0.095, y: 1.155}
+      - {x: 0.005, y: 1.355}
+      - {x: -0.065, y: 1.4649999}
+      - {x: -0.114999995, y: 1.525}
+      - {x: -0.16499999, y: 1.535}
+      - {x: -0.24499999, y: 1.535}
+      - {x: -0.285, y: 1.505}
+      - {x: -0.255, y: 1.3349999}
+      - {x: -0.125, y: 1.135}
+      - {x: -0.105, y: 1.055}
+      - {x: 0.024999999, y: 0.79499996}
+      - {x: 0.085, y: 0.635}
+      - {x: 0.105, y: 0.49499997}
+      - {x: 0.125, y: 0.415}
+      - {x: 0.16499999, y: 0.085}
+      - {x: 0.16499999, y: -0.21499999}
+      - {x: 0.125, y: -0.45499998}
+      - {x: 0.095, y: -0.695}
+      - {x: 0.035, y: -0.885}
+      - {x: -0.055, y: -1.0849999}
+      - {x: -0.275, y: -1.385}
+      - {x: -0.315, y: -1.485}
+      - {x: -0.315, y: -1.5649999}
+      - {x: -0.265, y: -1.625}
+      - {x: -0.225, y: -1.625}
+      - {x: -0.185, y: -1.615}
+      - {x: -0.015, y: -1.4549999}
+      - {x: 0.185, y: -1.255}
+      - {x: 0.225, y: -1.105}
+    - - {x: -0.575, y: 1.6949999}
+      - {x: -0.49499997, y: 1.605}
+      - {x: -0.355, y: 1.605}
+      - {x: -0.33499998, y: 1.625}
+      - {x: -0.33499998, y: 1.7249999}
+      - {x: -0.385, y: 1.8249999}
+      - {x: -0.42499998, y: 1.8349999}
+      - {x: -0.545, y: 1.8349999}
+      - {x: -0.575, y: 1.805}
