@@ -14,6 +14,8 @@ public class BossProjectileBehavior : MonoBehaviour
     private float _currentPreparationTime;
     private float _currentIdleTime;
     private Vector3 _targetDirection;
+    private DamageableEntity _entity;
+    private bool _isSetup = false;
 
     void Start()
     {
@@ -21,12 +23,11 @@ public class BossProjectileBehavior : MonoBehaviour
         _currentIdleTime = IdleTime;
         _preparationDirection = Random.insideUnitCircle.normalized;
         _playerDamageableEntity = FindObjectOfType<PlayerDamageableEntity>();
-        Destroy(gameObject, 2.0f);
     }
 
     void Update()
     {
-        if (_playerDamageableEntity != null)
+        if (_playerDamageableEntity != null && _isSetup == true)
         {
             if (_currentPreparationTime > 0)
             {
@@ -42,6 +43,7 @@ public class BossProjectileBehavior : MonoBehaviour
                 _canDamage = true;
                 _targetDirection = (_playerDamageableEntity.transform.position - transform.position).normalized;
                 _targetDirection.z = this.transform.position.z;
+                Destroy(gameObject, 3.0f);
             }
             else
             {
@@ -50,12 +52,18 @@ public class BossProjectileBehavior : MonoBehaviour
         }
     }
 
+    public void Setup(DamageableEntity entity)
+    {
+        _entity = entity;
+        _isSetup = true;
+    }
+
     void OnTriggerEnter2D(Collider2D col)
     {
         if (_canDamage == true && col.GetComponent<PlayerDamageableEntity>() != null)
         {
             //TODO change ça
-            _playerDamageableEntity.TakeDamage(0);
+            _playerDamageableEntity.TakeDamage(_entity.Damage);
             Destroy(this.gameObject);
         }
     }

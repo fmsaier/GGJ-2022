@@ -10,7 +10,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.Instance.IsGameStarted == true && GameManager.Instance.IsPlayerInControl == true)
+        if (GameManager.Instance.IsGameStarted == true && GameManager.Instance.IsGamePaused != true && GameManager.Instance.IsPlayerInControl == true)
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -27,6 +27,7 @@ public class PlayerBehaviour : MonoBehaviour
     void Attack(Vector3 targetPos, float angleDeg)
     {
         Animator.Play("Attack");
+        AudioManager.Instance.Play("Splash");
         ProjectileBehavior createdProj = Instantiate(projectile, transform.position, Quaternion.identity, null);
         createdProj.transform.rotation = Quaternion.Euler(0, 0, angleDeg);
         createdProj.Setup(entity, this.gameObject, targetPos);

@@ -32,12 +32,13 @@ public class GameManager : MonoBehaviour
     public bool IsGameOver = false;
     public bool IsPlayerInControl = false;
     public bool TimerFroze = false;
+    public bool IsGamePaused = false;
     private float _elapsedTime = 0;
 
     void Update()
     {
         if (IsGameStarted == true && IsGameOver != true)
-        {   
+        {
             if (TimerFroze == false)
             {
                 _elapsedTime += Time.deltaTime;
@@ -58,10 +59,21 @@ public class GameManager : MonoBehaviour
         WaveManager.Instance.StartWave();
     }
 
+    public void PauseGame()
+    {
+        IsGamePaused = true;
+    }
+
+    public void ResumeGame()
+    {
+        IsGamePaused = false;
+    }
+
     public void FinishGame()
     {
         IsPlayerInControl = false;
         IsGameOver = true;
+        WaveManager.Instance.Stop();
     }
 
     public void FreezeTimer(bool isTimerFreeze)

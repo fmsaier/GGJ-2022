@@ -8,14 +8,29 @@ public class PlayerDamageableEntity : DamageableEntity
     {
         Damage += permanentBuffScriptable.AttackModifier;
         MaxLife += permanentBuffScriptable.LifeModifier;
-        base.Heal(permanentBuffScriptable.LifeModifier);
+        Heal(permanentBuffScriptable.LifeModifier);
         MoveSpeed += permanentBuffScriptable.SpeedModifier;
         KnockBackPower += permanentBuffScriptable.KnockBackModifier;
+    }
+
+    public override void TakeDamage(float amount)
+    {
+        base.TakeDamage(amount);
+        GameUIManager.Instance.UpdateDarkness(CurrentLife, MaxLife);
+        //C PAS bo
+        transform.GetChild(0).GetComponent<Animator>().Play("Hit");
+    }
+
+    public override void Heal(float amount)
+    {
+        base.Heal(amount);
+        GameUIManager.Instance.UpdateDarkness(CurrentLife, MaxLife);
     }
 
     public override void Die()
     {
         base.Die();
-        Debug.Log("Player is dead");
+        GameManager.Instance.FinishGame();
+        GameUIManager.Instance.ShowDefeat();
     }
 }

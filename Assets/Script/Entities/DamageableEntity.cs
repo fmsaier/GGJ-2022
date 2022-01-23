@@ -20,24 +20,28 @@ public class DamageableEntity : MonoBehaviour
     public bool ScaleWithTime = false;
     public float Range = 1f;
 
-    protected bool _isDead = false;
+    [HideInInspector]
+    public bool IsDead = false;
     public virtual void Setup() { }
 
     public virtual void TakeDamage(float amount)
     {
-        if (_isDead == false)
+        if (GameManager.Instance.IsGamePaused == false)
         {
-            if (IsInvincible != true)
+            if (IsDead == false)
             {
-                CurrentLife -= amount;
-                if (Animator != null)
+                if (IsInvincible != true)
                 {
-                    Animator.Play("Hit");
-                }
-                if (CurrentLife <= 0)
-                {
-                    CurrentLife = 0;
-                    Die();
+                    CurrentLife -= amount;
+                    if (Animator != null)
+                    {
+                        Animator.Play("Hit");
+                    }
+                    if (CurrentLife <= 0)
+                    {
+                        CurrentLife = 0;
+                        Die();
+                    }
                 }
             }
         }
@@ -54,7 +58,7 @@ public class DamageableEntity : MonoBehaviour
 
     public virtual void Heal(float amount)
     {
-        if (_isDead == false)
+        if (IsDead == false)
         {
             CurrentLife += amount;
             if (CurrentLife >= MaxLife)
@@ -66,7 +70,7 @@ public class DamageableEntity : MonoBehaviour
 
     public virtual void Die()
     {
-        _isDead = true;
+        IsDead = true;
         IsInControl = false;
         GetComponent<Collider2D>().enabled = false;
         GetComponent<Rigidbody2D>().isKinematic = true;
@@ -74,6 +78,7 @@ public class DamageableEntity : MonoBehaviour
         {
             Animator.Play("Die");
             Destroy(this.gameObject, DeathClip.length);
+            AudioManager.Instance.Play("BadDeath");
         }
     }
 

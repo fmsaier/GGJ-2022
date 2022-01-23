@@ -26,7 +26,7 @@ public class BasicCreatureBehaviour : MonoBehaviour
     {
         if (_playerEntity != null && entity != null)
         {
-            if (entity.IsInControl == true && _isAttacking == false)
+            if (entity.IsDead == false && entity.IsInControl == true && _isAttacking == false)
             {
                 if (Vector2.Distance(transform.position, _targetPlayerPosition.position) > entity.Range)
                 {
@@ -46,6 +46,7 @@ public class BasicCreatureBehaviour : MonoBehaviour
         _isAttacking = true;
         float t = AttackClip.length;
         Animator.Play("Attack");
+        AudioManager.Instance.Play("BadAttack");
         while (t > 0)
         {
             t -= Time.deltaTime;
@@ -54,14 +55,9 @@ public class BasicCreatureBehaviour : MonoBehaviour
         if (entity.IsInControl)
         {
             //check if still in range
-            if (Vector2.Distance(transform.position, _targetPlayerPosition.position) < entity.Range)
+            if (Vector2.Distance(transform.position, _targetPlayerPosition.position) < (entity.Range * 1.7))
             {
                 _playerEntity.TakeDamage(entity.Damage);
-                Debug.Log("Still in range");
-            }
-            else
-            {
-                Debug.Log("Not in range");
             }
         }
         _isAttacking = false;

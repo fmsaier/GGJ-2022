@@ -103,10 +103,14 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 84c74b6b80564c9488e0a8357715a4da, type: 3}
   - {fileID: 21300000, guid: dd24fd39b22058a48ae59e809551952b, type: 3}
   - {fileID: 21300000, guid: 7d4aac4cbf0adfb4ba6b0ebcc681a938, type: 3}
+  - {fileID: 21300000, guid: b0a2a010235e6174da78f3382a10c550, type: 3}
+  - {fileID: 21300000, guid: cba28df0a9a8b854cb7cbb02f6de7443, type: 3}
+  - {fileID: 21300000, guid: fd3ec92e5adde8547834ae7fec334b34, type: 3}
   Speed: 20
   TimeToLive: 0.2
   ApplyKnockBack: 1
   KnockbackDuration: 0.7
+  CanHeal: 1
 --- !u!50 &7268496495552809430
 Rigidbody2D:
   serializedVersion: 4

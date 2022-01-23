@@ -10,10 +10,12 @@ public class ProjectileBehavior : MonoBehaviour
     [Header("Knockback parameter")]
     public bool ApplyKnockBack = false;
     public float KnockbackDuration = 0.5f;
+    public bool CanHeal = false;
     private DamageableEntity _entity;
     private GameObject _belongTo;
     private Vector3 _direction;
     private bool _isSetup;
+    private bool _healed = false;
     private List<DamageableEntity> _hitList = new List<DamageableEntity>();
 
     void Update()
@@ -50,6 +52,11 @@ public class ProjectileBehavior : MonoBehaviour
                 if (ApplyKnockBack == true)
                 {
                     damageableEntity.ApplyKnockBack(KnockbackDuration,  _entity.KnockBackPower, (col.transform.position - transform.position).normalized);
+                }
+                if (CanHeal == true && _healed == false)
+                {
+                    _entity.Heal(0.2f);
+                    _healed = true;
                 }
             }
         }
